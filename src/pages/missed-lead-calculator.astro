@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Missed lead calculator | ThunderBayAI" description="Estimate how much missed-call and follow-up leakage could be costing your Thunder Bay business each month.">
+  <section class="section">
+    <div class="container split-panel">
+      <div class="section-heading">
+        <p class="eyebrow">Lead magnet tool</p>
+        <h1>Missed lead calculator for Thunder Bay businesses.</h1>
+        <p class="lead">If calls are missed, quote follow-up is inconsistent, or response time is slow, revenue is leaking. This quick calculator turns that invisible problem into a rough monthly estimate.</p>
+        <div class="hero-actions">
+          <a class="button" href="/ai-opportunity-audit">Get a Free AI Opportunity Audit</a>
+          <a class="button secondary" href="https://frayze.ca/contact/">Request a Workflow Map</a>
+        </div>
+      </div>
+      <div class="card">
+        <form id="calc-form" class="grid" style="gap:1rem;">
+          <label>
+            <span class="muted">Missed leads per month</span>
+            <input id="missedLeads" type="number" min="0" value="12" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);" />
+          </label>
+          <label>
+            <span class="muted">Average job value ($)</span>
+            <input id="jobValue" type="number" min="0" value="1500" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);" />
+          </label>
+          <label>
+            <span class="muted">Likely close rate (%)</span>
+            <input id="closeRate" type="number" min="0" max="100" value="35" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);" />
+          </label>
+          <button class="button" type="submit" style="border:none;cursor:pointer;">Calculate lost revenue</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container grid grid-2">
+      <div class="card">
+        <p class="eyebrow">Estimated monthly leakage</p>
+        <h2 id="resultValue">$6,300</h2>
+        <p class="muted" id="resultText">Based on 12 missed leads, $1,500 average job value, and a 35% close rate.</p>
+      </div>
+      <div class="card">
+        <h2>What to do if the number is meaningful</h2>
+        <ul class="check-list">
+          <li>install missed-call text back and lead routing</li>
+          <li>improve quote reminder and follow-up sequences</li>
+          <li>connect web forms, calls, and pipeline stages in CRM</li>
+          <li>tighten the website path into the highest-intent CTA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const form = document.getElementById('calc-form');
+    const resultValue = document.getElementById('resultValue');
+    const resultText = document.getElementById('resultText');
+
+    const formatCurrency = (n) => new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 }).format(n);
+
+    const calculate = () => {
+      const missedLeads = Number(document.getElementById('missedLeads').value || 0);
+      const jobValue = Number(document.getElementById('jobValue').value || 0);
+      const closeRate = Number(document.getElementById('closeRate').value || 0) / 100;
+      const monthlyLeakage = missedLeads * jobValue * closeRate;
+      resultValue.textContent = formatCurrency(monthlyLeakage);
+      resultText.textContent = `Based on ${missedLeads} missed leads, ${formatCurrency(jobValue)} average job value, and ${Math.round(closeRate * 100)}% close rate.`;
+    };
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      calculate();
+    });
+
+    calculate();
+  </script>
+</BaseLayout>

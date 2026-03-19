@@ -1,16 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CTASection from '../components/CTASection.astro';
 ---
-<BaseLayout title="AI for contractors | ThunderBayAI">
+<BaseLayout title="AI for contractors in Thunder Bay | ThunderBayAI" description="Practical AI opportunities for contractors in Thunder Bay: missed-call recovery, quote follow-up, CRM automation, and cleaner lead flow.">
   <section class="section">
-    <div class="container grid" style="gap:1.5rem;">
-      <p class="eyebrow">Industry hub</p>
-      <h1 style="margin:0;text-transform:capitalize;">AI for contractors</h1>
-      <div class="card">
-        <p>This hub is scaffolded for final vertical copy: workflow problems, local opportunities, featured articles, and Frayze CTA routing.</p>
+    <div class="container split-panel">
+      <div class="section-heading">
+        <p class="eyebrow">Industry hub</p>
+        <h1>AI for contractors in Thunder Bay: where to automate first.</h1>
+        <p class="lead">For contractors, the opportunity is not abstract AI. It is faster lead response, better estimate follow-up, cleaner scheduling, and fewer jobs lost because the office side is overloaded.</p>
+        <div class="hero-actions">
+          <a class="button" href="/contractor-crm-automation-thunder-bay">See contractor CRM automation</a>
+          <a class="button secondary" href="/missed-lead-calculator">Use missed lead calculator</a>
+        </div>
       </div>
-      <CTASection title="Request a Local Workflow Map" body="If response time, follow-up, booking flow, or admin drag is hurting growth, start with the workflow map." buttonText="Request the Workflow Map" href="https://frayze.ca/contact/" />
+      <div class="card">
+        <p class="eyebrow">Top workflow leaks</p>
+        <ul class="check-list">
+          <li>missed calls during active jobs</li>
+          <li>slow estimate follow-up</li>
+          <li>pipeline visibility gaps</li>
+          <li>manual reminder and review requests</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0;">
+    <div class="container grid grid-2">
+      <a class="card card-link" href="/contractor-crm-automation-thunder-bay"><h3>Contractor CRM automation</h3><p class="muted">The direct implementation path for quote follow-up, lead routing, and pipeline control.</p></a>
+      <a class="card card-link" href="/thunder-bay-ai-automation"><h3>Thunder Bay AI automation</h3><p class="muted">Start broader, then narrow into the contractor-specific systems worth installing first.</p></a>
+      <a class="card card-link" href="/ai-opportunity-audit"><h3>AI opportunity audit</h3><p class="muted">Use the audit to prioritize the highest-value bottlenecks before adding tools.</p></a>
+      <a class="card card-link" href="/missed-lead-calculator"><h3>Missed lead calculator</h3><p class="muted">Turn missed-call and slow-response leakage into a visible number.</p></a>
     </div>
   </section>
 </BaseLayout>
