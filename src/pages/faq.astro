@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const faqs = [
+  ['What is ThunderBayAI?', 'ThunderBayAI is a local AI authority and education engine for Thunder Bay and Northwestern Ontario businesses.'],
+  ['Is ThunderBayAI the implementation company?', 'No. ThunderBayAI captures attention, educates, and routes serious implementation needs to Frayze.'],
+  ['What kinds of businesses is this for?', 'Primarily contractors, home services, restaurants, automotive, real estate, and other local service businesses with outdated systems or visible conversion leakage.'],
+  ['What should I do first?', 'Usually start with the AI Opportunity Audit, Website Audit, or Missed Lead Calculator depending on the bottleneck.'],
+  ['Do I need AI to benefit from this?', 'Not necessarily. In many cases the first win is a cleaner CRM, stronger website conversion flow, or better local SEO foundation.']
+];
+---
+<BaseLayout title="FAQ | ThunderBayAI" description="Frequently asked questions about ThunderBayAI, Frayze, local AI implementation, and what local businesses should do first.">
+  <section class="section">
+    <div class="container section-heading">
+      <p class="eyebrow">FAQ</p>
+      <h1>Frequently asked questions.</h1>
+      <p class="lead">Short answers for local business owners trying to understand how ThunderBayAI and Frayze fit together.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0;">
+    <div class="container grid">
+      {faqs.map(([question, answer]) => (
+        <div class="card">
+          <h3>{question}</h3>
+          <p class="muted">{answer}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
