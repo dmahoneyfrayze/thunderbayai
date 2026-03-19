@@ -3,43 +3,104 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTASection from '../components/CTASection.astro';
 import IndustryHubCard from '../components/IndustryHubCard.astro';
 import ArticleCard from '../components/ArticleCard.astro';
+
 const hubs = [
-  ['ai-for-contractors', 'AI for Contractors', 'Missed-call follow-up, quote speed, lead routing, and admin reduction.'],
-  ['ai-for-home-services', 'AI for Home Services', 'Automation plays for service businesses that live or die by response time.'],
-  ['ai-for-automotive', 'AI for Automotive', 'Booking flow, service reminders, CRM hygiene, and customer communication.'],
-  ['ai-for-restaurants', 'AI for Restaurants', 'Reservations, questions, staffing pressure, and repeat-customer workflows.'],
-  ['ai-for-real-estate', 'AI for Real Estate', 'Lead qualification, follow-up speed, and listing inquiry workflows.'],
-  ['ai-for-nwo-businesses', 'AI for NWO Businesses', 'Local AI opportunities across Northwestern Ontario.']
+  ['ai-for-contractors', 'AI for Contractors', 'Missed-call follow-up, quote speed, lead routing, and admin reduction for high-ticket service businesses.'],
+  ['ai-for-home-services', 'AI for Home Services', 'Automation plays for service businesses that live or die by response time and booking speed.'],
+  ['ai-for-automotive', 'AI for Automotive', 'Booking flow, service reminders, customer reactivation, and front-desk automation.'],
+  ['ai-for-restaurants', 'AI for Restaurants', 'Reservations, customer questions, repeat-visit campaigns, and digital operations.'],
+  ['ai-for-real-estate', 'AI for Real Estate', 'Lead qualification, listing inquiry handling, and follow-up systems for faster conversion.'],
+  ['ai-for-nwo-businesses', 'AI for NWO Businesses', 'Local AI opportunities across Northwestern Ontario with practical next moves.']
 ];
+
 const featured = [
-  ['How AI missed-call text back could help Thunder Bay contractors stop losing leads', '/news/how-ai-missed-call-text-back-could-help-thunder-bay-contractors-stop-losing-leads', 'news'],
-  ['What Google’s newest AI search changes mean for local SEO in Thunder Bay', '/guides/what-googles-newest-ai-search-changes-mean-for-local-seo-in-thunder-bay', 'guide'],
-  ['New AI receptionist tools: what they mean for local service businesses', '/news/new-ai-receptionist-tools-what-they-mean-for-local-service-businesses', 'alert']
+  ['How AI missed-call text back could help Thunder Bay contractors stop losing leads', '/news/how-ai-missed-call-text-back-could-help-thunder-bay-contractors-stop-losing-leads', 'News'],
+  ['How to automate missed-call text back for a Thunder Bay contractor', '/guides/how-to-automate-missed-call-text-back-thunder-bay', 'Guide'],
+  ['New AI receptionist tools: what they mean for local service businesses', '/news/new-ai-receptionist-tools-what-they-mean-for-local-service-businesses', 'Alert']
+];
+
+const metrics = [
+  ['Priority markets', 'Thunder Bay + Northwestern Ontario'],
+  ['Core outcomes', 'More leads, faster response, cleaner systems'],
+  ['Commercial focus', 'AI automation, CRM, websites, local SEO']
 ];
 ---
-<BaseLayout title="ThunderBayAI | AI intelligence for Thunder Bay businesses">
+<BaseLayout title="ThunderBayAI | Premium local AI intelligence for Thunder Bay businesses" description="Premium local AI intelligence for Thunder Bay and Northwestern Ontario businesses focused on automation, CRM systems, websites, local SEO, and growth workflows.">
   <section class="hero container">
-    <p class="eyebrow">Thunder Bay + Northwestern Ontario</p>
-    <h1>AI intelligence for Thunder Bay and Northwestern Ontario businesses</h1>
-    <p>Practical local coverage on AI tools, workflow automation, lead handling, and what business owners should actually do next.</p>
-    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
-      <a class="button" href="/free-ai-audit">Get a Free AI Opportunity Audit</a>
-      <a class="button" style="background:#132435;color:var(--text);border:1px solid var(--line);" href="/workflow-map">See What You Can Automate</a>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="grid grid-3">
-        {featured.map(([title, href, category]) => <ArticleCard href={href} title={title} category={category} description="Local angle, real workflow consequence, and a concrete next move." />)}
+    <div class="hero-shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Premium local growth intelligence</p>
+        <h1>AI, websites, and growth systems for Thunder Bay businesses that need results.</h1>
+        <p class="lead">ThunderBayAI translates AI shifts, automation opportunities, and digital growth moves into practical decisions for owners and operators across Thunder Bay and Northwestern Ontario.</p>
+        <div class="hero-actions">
+          <a class="button" href="/free-ai-audit">Get a Free AI Opportunity Audit</a>
+          <a class="button secondary" href="/workflow-map">Request a Workflow Map</a>
+        </div>
+        <div class="hero-stats">
+          {metrics.map(([title, text]) => (
+            <div class="stat-pill">
+              <span class="muted">{title}</span>
+              <strong>{text}</strong>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-frame">
+          <img src="/images/hero-grid.svg" alt="Premium ThunderBayAI dashboard-style visual representing local AI, lead generation, and workflow systems." />
+        </div>
+        <div class="glass-panel">
+          <p class="eyebrow">Built for operators</p>
+          <h3 style="margin-bottom:.6rem;">Local authority with commercial intent</h3>
+          <p class="muted" style="margin:0;">Every page should rank, convert, capture a lead, support authority, or strengthen the site graph. No filler. No generic AI fluff.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <p class="eyebrow">Industries</p>
-      <h2>Where local workflow leakage is costing the most</h2>
+      <div class="feature-band">
+        <div class="feature-metric"><strong>High-intent pages</strong><span class="muted">Service pages, local SEO pages, and conversion assets built first.</span></div>
+        <div class="feature-metric"><strong>Lead magnets + tools</strong><span class="muted">Audit flows, calculators, and scorecards that capture demand instead of wasting traffic.</span></div>
+        <div class="feature-metric"><strong>Frayze-backed execution</strong><span class="muted">Authority site up front. Real implementation pathway behind it.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-panel">
+      <div class="section-heading">
+        <p class="eyebrow">What ThunderBayAI covers</p>
+        <h2>Practical local intelligence across automation, websites, CRM, and search visibility.</h2>
+        <p class="lead">The goal is not to publish noise. It is to help local businesses understand where revenue leaks, what to automate first, and which systems actually move the needle.</p>
+        <div class="kicker-bar">
+          <span class="kicker-chip">AI automation</span>
+          <span class="kicker-chip">CRM systems</span>
+          <span class="kicker-chip">Websites that convert</span>
+          <span class="kicker-chip">Local SEO</span>
+          <span class="kicker-chip">Lead generation systems</span>
+        </div>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Why it matters</p>
+        <ul class="check-list">
+          <li>Too many local businesses still lose leads to slow response and weak follow-up.</li>
+          <li>Outdated websites and poor conversion systems waste existing traffic.</li>
+          <li>Owners need clear implementation paths, not generic AI commentary.</li>
+          <li>Local-first content creates search visibility and a cleaner path to qualified calls.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Industry hubs</p>
+        <h2>Start with the local vertical that leaks the most revenue.</h2>
+        <p class="lead">Each hub is designed to connect real workflow problems to concrete implementation options, internal links, and commercial next steps.</p>
+      </div>
       <div class="grid grid-3">
         {hubs.map(([slug, title, description]) => <IndustryHubCard href={`/${slug}`} title={title} description={description} />)}
       </div>
@@ -47,9 +108,21 @@ const featured = [
   </section>
 
   <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Featured coverage</p>
+        <h2>Local AI and systems content with a business outcome attached.</h2>
+      </div>
+      <div class="grid grid-3">
+        {featured.map(([title, href, category]) => <ArticleCard href={href} title={title} category={category} description="Commercially useful local insight with a clear next action." />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container grid grid-2">
-      <CTASection eyebrow="Primary CTA" title="Get a Free AI Opportunity Audit" body="Start with the highest-value automation opportunities first: lead response, follow-up, admin reduction, and conversion fixes." buttonText="Get the Free AI Audit" href="https://frayze.ca/resources/automation-readiness-roi/" />
-      <CTASection eyebrow="Workflow CTA" title="Request a Local Workflow Map" body="If fast response and clean follow-up matter to your business, map the bottlenecks before you buy more tools." buttonText="Request the Workflow Map" href="https://frayze.ca/contact/" />
+      <CTASection eyebrow="Primary CTA" title="Get a Free AI Opportunity Audit" body="Find the fastest wins across lead response, follow-up, admin drag, and workflow automation before you spend money in the wrong place." buttonText="Get the Free AI Audit" href="https://frayze.ca/resources/automation-readiness-roi/" />
+      <CTASection eyebrow="Conversion CTA" title="See What You Can Automate" body="Map the handoffs, missed leads, and manual bottlenecks that are slowing growth, then turn them into cleaner systems." buttonText="See What You Can Automate" href="https://frayze.ca/contact/" />
     </div>
   </section>
 </BaseLayout>

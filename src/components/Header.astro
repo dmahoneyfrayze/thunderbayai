@@ -9,9 +9,13 @@ const links = [
 ---
 <header class="site-header">
   <div class="container nav">
-    <a href="/" style="font-weight:800;color:white;">ThunderBayAI</a>
+    <a href="/" style="font-weight:800;color:white;display:flex;align-items:center;">
+      <span class="logo-mark">T</span>
+      <span>ThunderBayAI</span>
+    </a>
     <nav class="nav-links">
       {links.map((link) => <a href={link.href}>{link.label}</a>)}
+      <a class="button secondary" href="https://frayze.ca/book-consultation/">Book Strategy Call</a>
     </nav>
   </div>
 </header>
