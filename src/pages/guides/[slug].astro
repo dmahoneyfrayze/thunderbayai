@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('guides');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { data } = entry;
+---
+<BaseLayout title={`${data.title} | ThunderBayAI`} description={data.description}>
+  <section class="section">
+    <div class="container" style="max-width: 820px;">
+      <div class="section-heading">
+        <p class="eyebrow">Guide</p>
+        <h1>{data.title}</h1>
+        <p class="lead">{data.description}</p>
+      </div>
+      <div class="meta-grid" style="margin-bottom: 1.5rem;">
+        <div class="card"><span class="muted">Published</span><strong>{new Date(data.publishDate).toLocaleDateString('en-CA')}</strong></div>
+        <div class="card"><span class="muted">Region</span><strong>{data.localRegion}</strong></div>
+        <div class="card"><span class="muted">Primary pain</span><strong>{data.primaryPain}</strong></div>
+        <div class="card"><span class="muted">Vertical</span><strong>{data.vertical}</strong></div>
+      </div>
+      <article class="card" style="padding: 2rem;">
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container grid grid-2" style="max-width: 820px;">
+      <CTASection eyebrow="Implementation" title="Need this workflow built properly?" body="Get help mapping the workflow, connecting the CRM, and keeping follow-up tied to revenue instead of tool sprawl." buttonText="Request a Workflow Map" href={data.frayzeLinks[1]} />
+      <CTASection eyebrow="Next step" title="Use the supporting tools first" body="If you are still validating the problem, use the calculator and scorecard tools to estimate leakage and choose where to automate first." buttonText="Explore Tools" href="/tools" />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,5 +1,15 @@
 const items = [
   {
+    title: "Google's Gemini API spend caps: what they mean for Thunder Bay business builders",
+    link: 'https://thunderbayai.com/news/google-gemini-api-spend-caps-what-they-mean-for-thunder-bay-business-builders',
+    description: 'How Google\'s new Gemini API billing controls lower the risk of practical AI pilots for local businesses.'
+  },
+  {
+    title: "NVIDIA's physical AI data factory: why it matters for Thunder Bay robotics and operations",
+    link: 'https://thunderbayai.com/news/nvidia-physical-ai-data-factory-why-it-matters-for-thunder-bay-robotics-and-operations',
+    description: 'A local operations take on NVIDIA\'s latest physical AI infrastructure announcement.'
+  },
+  {
     title: 'How AI missed-call text back could help Thunder Bay contractors stop losing leads',
     link: 'https://thunderbayai.com/news/how-ai-missed-call-text-back-could-help-thunder-bay-contractors-stop-losing-leads',
     description: 'Local impact article on missed-call recovery for contractors.'

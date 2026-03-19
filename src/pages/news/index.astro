@@ -1,6 +1,27 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const newsEntries = await getCollection('news');
+const alertEntries = await getCollection('alerts');
+const items = [...newsEntries, ...alertEntries]
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
 ---
-<BaseLayout title="News | ThunderBayAI">
-  <section class="section"><div class="container"><h1>News</h1><p class="muted">Local AI impact coverage for Thunder Bay and Northwestern Ontario.</p></div></section>
+<BaseLayout title="News | ThunderBayAI" description="Local AI impact coverage for Thunder Bay and Northwestern Ontario with business consequences and implementation angles.">
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">News</p>
+        <h1>Local AI impact coverage for Thunder Bay and Northwestern Ontario.</h1>
+        <p class="lead">Major AI and emerging-tech announcements translated into practical business implications, local opportunities, and next actions.</p>
+      </div>
+      <div class="grid grid-2">
+        {items.map((entry) => (
+          <ArticleCard href={`/news/${entry.slug}`} title={entry.data.title} category={entry.data.category} description={entry.data.description} />
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayout>

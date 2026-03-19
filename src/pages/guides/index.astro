@@ -1,6 +1,25 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const items = (await getCollection('guides'))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
 ---
-<BaseLayout title="Guides | ThunderBayAI">
-  <section class="section"><div class="container"><h1>Guides</h1><p class="muted">Implementation-focused guides for AI workflows, lead handling, and automation.</p></div></section>
+<BaseLayout title="Guides | ThunderBayAI" description="Implementation-focused guides for AI workflows, lead handling, and automation in Thunder Bay and Northwestern Ontario.">
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Guides</p>
+        <h1>Implementation guides for local operators.</h1>
+        <p class="lead">Use these playbooks to move from AI curiosity into actual workflows, cleaner follow-up, and better operational systems.</p>
+      </div>
+      <div class="grid grid-2">
+        {items.map((entry) => (
+          <ArticleCard href={`/guides/${entry.slug}`} title={entry.data.title} category="guide" description={entry.data.description} />
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayout>
