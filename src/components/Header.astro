@@ -1,0 +1,17 @@
+---
+const links = [
+  { href: '/news', label: 'News' },
+  { href: '/guides', label: 'Guides' },
+  { href: '/ai-for-nwo-businesses', label: 'Industries' },
+  { href: '/weekly-digest', label: 'Weekly Digest' },
+  { href: '/free-ai-audit', label: 'Free AI Audit' }
+];
+---
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" style="font-weight:800;color:white;">ThunderBayAI</a>
+    <nav class="nav-links">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+  </div>
+</header>
