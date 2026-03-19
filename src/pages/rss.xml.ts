@@ -1,5 +1,10 @@
 const items = [
   {
+    title: 'NVIDIA GTC 2026: physical AI moves closer to real deployment for Northwestern Ontario',
+    link: 'https://thunderbayai.com/news/nvidia-gtc-2026-physical-ai-moves-closer-to-real-deployment-for-northwestern-ontario',
+    description: 'Why NVIDIA\'s latest physical AI push matters for industrial operators, contractors, and logistics-heavy businesses in Northwestern Ontario.'
+  },
+  {
     title: "Google's Gemini API spend caps: what they mean for Thunder Bay business builders",
     link: 'https://thunderbayai.com/news/google-gemini-api-spend-caps-what-they-mean-for-thunder-bay-business-builders',
     description: 'How Google\'s new Gemini API billing controls lower the risk of practical AI pilots for local businesses.'
