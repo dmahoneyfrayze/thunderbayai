@@ -2,12 +2,19 @@
 const links = [
   { href: '/news', label: 'News' },
   { href: '/guides', label: 'Guides' },
+  { href: '/services', label: 'Services' },
+  { href: '/tools', label: 'Tools' },
   { href: '/ai-for-nwo-businesses', label: 'Industries' },
-  { href: '/weekly-digest', label: 'Weekly Digest' },
-  { href: '/free-ai-audit', label: 'Free AI Audit' }
+  { href: '/weekly-digest', label: 'Weekly Digest' }
 ];
 ---
 <header class="site-header">
+  <div class="container" style="padding-top:.55rem;">
+    <div class="kicker-bar" style="justify-content:space-between;align-items:center;gap:.75rem;">
+      <span class="kicker-chip">NWO AI Authority Hub</span>
+      <span class="muted" style="font-size:.9rem;">Local tech shifts, business use cases, and direct implementation paths.</span>
+    </div>
+  </div>
   <div class="container nav">
     <a href="/" style="font-weight:800;color:white;display:flex;align-items:center;">
       <span class="logo-mark">T</span>
@@ -15,7 +22,8 @@ const links = [
     </a>
     <nav class="nav-links">
       {links.map((link) => <a href={link.href}>{link.label}</a>)}
-      <a class="button secondary" href="https://frayze.ca/book-consultation/">Book Strategy Call</a>
+      <a class="button secondary" href="/ai-opportunity-audit">Free AI Audit</a>
+      <a class="button" href="https://frayze.ca/book-consultation/">Book Strategy Call</a>
     </nav>
   </div>
 </header>
