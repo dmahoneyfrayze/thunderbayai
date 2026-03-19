@@ -12,6 +12,13 @@ const { title = 'ThunderBayAI', description = 'AI intelligence for Thunder Bay a
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26RYXCP42D"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-26RYXCP42D');
+    </script>
   </head>
   <body>
     <Header />
