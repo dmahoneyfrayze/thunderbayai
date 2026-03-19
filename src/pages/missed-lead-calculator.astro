@@ -17,17 +17,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <form id="calc-form" class="grid" style="gap:1rem;">
           <label>
             <span class="muted">Missed leads per month</span>
-            <input id="missedLeads" type="number" min="0" value="12" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);" />
+            <input id="missedLeads" class="form-control" type="number" min="0" value="12" inputmode="numeric" />
           </label>
           <label>
             <span class="muted">Average job value ($)</span>
-            <input id="jobValue" type="number" min="0" value="1500" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);" />
+            <input id="jobValue" class="form-control" type="number" min="0" value="1500" inputmode="numeric" />
           </label>
           <label>
             <span class="muted">Likely close rate (%)</span>
-            <input id="closeRate" type="number" min="0" max="100" value="35" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);" />
+            <input id="closeRate" class="form-control" type="number" min="0" max="100" value="35" inputmode="numeric" />
           </label>
           <button class="button" type="submit" style="border:none;cursor:pointer;">Calculate lost revenue</button>
+          <p class="muted" style="margin:0;font-size:.95rem;">Quick estimate only. Use it to decide whether a workflow map or AI audit is worth doing next.</p>
         </form>
       </div>
     </div>
@@ -35,10 +36,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="section" style="padding-top:0;">
     <div class="container grid grid-2">
-      <div class="card">
+      <div class="card result-callout">
         <p class="eyebrow">Estimated monthly leakage</p>
         <h2 id="resultValue">$6,300</h2>
         <p class="muted" id="resultText">Based on 12 missed leads, $1,500 average job value, and a 35% close rate.</p>
+        <div class="result-breakdown">
+          <div class="card"><span class="muted">Yearly view</span><strong id="annualValue" style="display:block;font-size:1.4rem;margin-top:.3rem;">$75,600</strong></div>
+          <div class="card"><span class="muted">Recover 25%</span><strong id="recoveredValue" style="display:block;font-size:1.4rem;margin-top:.3rem;">$18,900</strong></div>
+        </div>
       </div>
       <div class="card">
         <h2>What to do if the number is meaningful</h2>
@@ -48,6 +53,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <li>connect web forms, calls, and pipeline stages in CRM</li>
           <li>tighten the website path into the highest-intent CTA</li>
         </ul>
+        <div class="hero-actions" style="margin-top:1.25rem;">
+          <a class="button" href="/workflow-map">Request Workflow Map</a>
+          <a class="button secondary" href="/ai-receptionist-thunder-bay">See AI Receptionist Systems</a>
+        </div>
       </div>
     </div>
   </section>
@@ -56,6 +65,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const form = document.getElementById('calc-form');
     const resultValue = document.getElementById('resultValue');
     const resultText = document.getElementById('resultText');
+    const annualValue = document.getElementById('annualValue');
+    const recoveredValue = document.getElementById('recoveredValue');
+    const inputIds = ['missedLeads', 'jobValue', 'closeRate'];
 
     const formatCurrency = (n) => new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 }).format(n);
 
@@ -66,12 +78,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const monthlyLeakage = missedLeads * jobValue * closeRate;
       resultValue.textContent = formatCurrency(monthlyLeakage);
       resultText.textContent = `Based on ${missedLeads} missed leads, ${formatCurrency(jobValue)} average job value, and ${Math.round(closeRate * 100)}% close rate.`;
+      annualValue.textContent = formatCurrency(monthlyLeakage * 12);
+      recoveredValue.textContent = formatCurrency(monthlyLeakage * 12 * 0.25);
     };
 
     form?.addEventListener('submit', (event) => {
       event.preventDefault();
       calculate();
     });
+
+    inputIds.forEach((id) => document.getElementById(id)?.addEventListener('input', calculate));
 
     calculate();
   </script>

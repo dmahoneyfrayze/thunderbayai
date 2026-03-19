@@ -6,7 +6,8 @@ import Footer from '../components/Footer.astro';
 const {
   title = 'ThunderBayAI',
   description = 'AI intelligence for Thunder Bay and Northwestern Ontario businesses',
-  ogImage = '/images/og-default.svg'
+  ogImage = '/images/og-default.svg',
+  noindex = false
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -20,6 +21,7 @@ const ogImageUrl = new URL(ogImage, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ThunderBayAI" />
@@ -35,12 +37,29 @@ const ogImageUrl = new URL(ogImage, Astro.site);
 
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'ThunderBayAI',
-      url: Astro.site,
-      description,
-      areaServed: ['Thunder Bay', 'Northwestern Ontario', 'Northern Ontario'],
-      sameAs: []
+      '@graph': [
+        {
+          '@type': 'Organization',
+          name: 'ThunderBayAI',
+          url: Astro.site,
+          description,
+          areaServed: ['Thunder Bay', 'Northwestern Ontario', 'Northern Ontario'],
+          sameAs: []
+        },
+        {
+          '@type': 'WebSite',
+          name: 'ThunderBayAI',
+          url: Astro.site,
+          inLanguage: 'en-CA'
+        },
+        {
+          '@type': 'WebPage',
+          name: title,
+          url: canonical,
+          description,
+          isPartOf: Astro.site
+        }
+      ]
     })} />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-26RYXCP42D"></script>
@@ -57,5 +76,9 @@ const ogImageUrl = new URL(ogImage, Astro.site);
       <slot />
     </main>
     <Footer />
+    <div class="mobile-cta-bar" aria-label="Quick actions">
+      <a class="button secondary" href="/missed-lead-calculator">Calc Lost Leads</a>
+      <a class="button" href="/ai-opportunity-audit">Free AI Audit</a>
+    </div>
   </body>
 </html>

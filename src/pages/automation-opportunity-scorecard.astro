@@ -11,33 +11,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
       <div class="card">
         <form id="scorecard" class="grid" style="gap:1rem;">
-          <label><span class="muted">Do leads come from multiple channels?</span><select id="q1" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);"><option value="3">Yes, many</option><option value="2">A few</option><option value="0">No</option></select></label>
-          <label><span class="muted">Is follow-up inconsistent?</span><select id="q2" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);"><option value="3">Often</option><option value="2">Sometimes</option><option value="0">Rarely</option></select></label>
-          <label><span class="muted">Does admin work slow staff down?</span><select id="q3" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);"><option value="3">Yes</option><option value="2">Somewhat</option><option value="0">No</option></select></label>
-          <label><span class="muted">Is your website a strong conversion asset?</span><select id="q4" style="width:100%;margin-top:.35rem;padding:.9rem 1rem;border-radius:14px;border:1px solid var(--line);background:#0c1724;color:var(--text);"><option value="3">No</option><option value="1">Maybe</option><option value="0">Yes</option></select></label>
+          <label><span class="muted">Do leads come from multiple channels?</span><select id="q1" class="form-control"><option value="3">Yes, many</option><option value="2">A few</option><option value="0">No</option></select></label>
+          <label><span class="muted">Is follow-up inconsistent?</span><select id="q2" class="form-control"><option value="3">Often</option><option value="2">Sometimes</option><option value="0">Rarely</option></select></label>
+          <label><span class="muted">Does admin work slow staff down?</span><select id="q3" class="form-control"><option value="3">Yes</option><option value="2">Somewhat</option><option value="0">No</option></select></label>
+          <label><span class="muted">Is your website a strong conversion asset?</span><select id="q4" class="form-control"><option value="3">No</option><option value="1">Maybe</option><option value="0">Yes</option></select></label>
           <button class="button" type="submit" style="border:none;cursor:pointer;">Calculate score</button>
+          <p class="muted" style="margin:0;font-size:.95rem;">Use this as a prioritization tool, not a final diagnosis.</p>
         </form>
       </div>
     </div>
   </section>
   <section class="section" style="padding-top:0;">
     <div class="container grid grid-2">
-      <div class="card"><p class="eyebrow">Score</p><h2 id="scoreValue">11 / 12</h2><p class="muted" id="scoreText">High automation opportunity. Start with an audit and workflow map.</p></div>
-      <div class="card"><h2>Suggested next move</h2><div class="kicker-bar"><a class="kicker-chip" href="/ai-opportunity-audit">AI opportunity audit</a><a class="kicker-chip" href="/workflow-map">Workflow map</a><a class="kicker-chip" href="/thunder-bay-crm-systems">CRM systems</a><a class="kicker-chip" href="/website-audit-thunder-bay">Website audit</a></div></div>
+      <div class="card result-callout"><p class="eyebrow">Score</p><h2 id="scoreValue">11 / 12</h2><p class="muted" id="scoreText">High automation opportunity. Start with an audit and workflow map.</p></div>
+      <div class="card"><h2>Suggested next move</h2><div class="kicker-bar"><a class="kicker-chip" href="/ai-opportunity-audit">AI opportunity audit</a><a class="kicker-chip" href="/workflow-map">Workflow map</a><a class="kicker-chip" href="/thunder-bay-crm-systems">CRM systems</a><a class="kicker-chip" href="/website-audit-thunder-bay">Website audit</a><a class="kicker-chip" href="/ai-receptionist-thunder-bay">AI receptionist</a></div></div>
     </div>
   </section>
   <script is:inline>
     const form = document.getElementById('scorecard');
     const scoreValue = document.getElementById('scoreValue');
     const scoreText = document.getElementById('scoreText');
+    const questions = ['q1','q2','q3','q4'];
     const updateScore = () => {
-      const total = ['q1','q2','q3','q4'].reduce((sum, id) => sum + Number(document.getElementById(id).value || 0), 0);
+      const total = questions.reduce((sum, id) => sum + Number(document.getElementById(id).value || 0), 0);
       scoreValue.textContent = `${total} / 12`;
       if (total >= 9) scoreText.textContent = 'High automation opportunity. Start with an audit and workflow map.';
       else if (total >= 5) scoreText.textContent = 'Moderate opportunity. Tighten systems and prioritize the most painful bottleneck first.';
       else scoreText.textContent = 'Lower urgency. Focus on foundational visibility or conversion improvements first.';
     };
     form?.addEventListener('submit', (e) => { e.preventDefault(); updateScore(); });
+    questions.forEach((id) => document.getElementById(id)?.addEventListener('change', updateScore));
     updateScore();
   </script>
 </BaseLayout>
